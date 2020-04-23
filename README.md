@@ -1,6 +1,11 @@
 Japronto Extra
 ==============
-A bit of sugar for the fastest python framework: `pip install orjson japronto-extra`
+A bit of sugar for the [fastest python framework][japronto]
+
+    pip install orjson japronto-extra
+
+Api
+---
 
 ```python
 @route("/")
@@ -33,6 +38,8 @@ def basic_validation(request):
         request.json, "at", datetime.fromisoformat, default=datetime.now()
     )
     return {"id": id, "at": at}
-``
+```
 
-The full working example is in [expample.py](./example.py)
+Look at the working example in [expample.py](./example.py)
+
+[japronto]: https://github.com/squeaky-pl/japronto/

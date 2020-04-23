@@ -7,9 +7,9 @@ from setuptools import setup
 import japronto_extra as mod
 
 if sys.argv[-1] == "publish":
-    err = os.system("pytest")
-    if err:
-        exit(err)
+    # err = os.system("pytest")
+    # if err:
+    #     exit(err)
     os.system("python setup.py bdist_wheel")
     os.system("python -m twine upload dist/*")
     os.system("git push")
@@ -40,4 +40,5 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     setup_requires=["wheel"],
+    install_requires=["japronto"],
 )
