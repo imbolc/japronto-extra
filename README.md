@@ -1,6 +1,6 @@
 Japronto Extra
 ==============
-A bit of sugar for the fastest python framework: `pip install japronto-extra`
+A bit of sugar for the fastest python framework: `pip install orjson japronto-extra`
 
 ```python
 @route("/")
@@ -23,16 +23,16 @@ def foo__bar(request):
     return "I'm at /foo/bar"
 
 
-@route
+@route("/validation", "POST")
 @jsonify
 def basic_validation(request):
     # required integer query argument
     id = get_argument(request.query, "id", int)
     # optional `datetime` json argument with a default fallback
     at = get_argument(
-        request.json, "start", datetime.fromisoformat, default=datetime.now()
+        request.json, "at", datetime.fromisoformat, default=datetime.now()
     )
     return {"id": id, "at": at}
-```
+``
 
 The full working example is in [expample.py](./example.py)

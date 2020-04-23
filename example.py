@@ -34,16 +34,16 @@ def foo__bar(request):
     return "I'm at /foo/bar"
 
 
-@route
+@route("/validation", "POST")
 @jsonify
 def basic_validation(request):
     # required integer query argument
     id = get_argument(request.query, "id", int)
     # optional `datetime` json argument with a default fallback
     at = get_argument(
-        request.json, "start", datetime.fromisoformat, default=datetime.now()
+        request.json, "at", datetime.fromisoformat, default=datetime.now()
     )
     return {"id": id, "at": at}
 
 
-app.run(port=8000)
+app.run(port=8000, debug=True)

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from asyncio import iscoroutinefunction
 from functools import wraps
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 from japronto import Application
 from japronto.request import HttpRequest
@@ -17,7 +17,7 @@ except ImportError:
         return json.dumps(*a, *kw).encode("utf-8")
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 NONE = object()
 
 
@@ -51,12 +51,16 @@ def jsonify(f: Callable) -> Callable:
 
 
 def router(app: Application) -> Callable:
-    def route(url_or_func: Union[str, Callable]) -> Callable:
+    def route(
+        url_or_func: Union[str, Callable],
+        method: Optional[str] = None,
+        methods: Optional[List[str]] = None,
+    ) -> Callable:
         def wrapper(f: Callable):
             url = url_or_func
             if callable(url):
                 url = "/" + f.__name__.replace("__", "/").replace("_", "-")
-            app.router.add_route(url, f)
+            app.router.add_route(url, f, method, methods)
             return f
 
         if callable(url_or_func):
