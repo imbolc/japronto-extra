@@ -17,7 +17,7 @@ except ImportError:
         return json.dumps(*a, *kw).encode("utf-8")
 
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 NONE = object()
 
 

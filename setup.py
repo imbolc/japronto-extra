@@ -40,5 +40,4 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     setup_requires=["wheel"],
-    install_requires=["japronto"],
 )
